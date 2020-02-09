@@ -4,7 +4,7 @@ var cdn = require("./module/CDN.js")
 const MongoClient = require('mongodb').MongoClient;
 const url = require("./module/urlMongo.js");
 const assert = require('assert');
-const dbName = 'requestSSH';
+const dbName = 'testlive';
 var x = 0;
 /* GET home page. */
 router.post('/', function(req, res, next) {
@@ -17,11 +17,13 @@ router.post('/', function(req, res, next) {
 	  	req.body.index = x++;
 	  	db.collection("proxylist").insertOne(req.body,(err, proxy)=>{
 	  		db.collection("orderGeo").findOne({"geo":req.body.geo},(err,result)=>{
+	  			console.log("asdasd")
 				if(result===null){
 					db.collection("orderGeo").insertOne(
 						{"geo":req.body.geo, count:0},
 						(err, order)=>{
 	  						client.close();
+	  						console.log(err,"---");
 				  			if(!err){
 				  				res.send("success")
 				  			}else{res.send("errors")}
@@ -32,6 +34,7 @@ router.post('/', function(req, res, next) {
 						{"$set":{count:result.count+2}},
 						(err, order)=>{
 	  						client.close();
+	  						console.log(err);
 				  			if(!err){
 				  				res.send("success")
 				  			}else{

@@ -5,7 +5,7 @@ const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 var ObjectID = require('mongodb').ObjectID
 const url = require("./module/urlMongo.js");
-const dbName = 'requestSSH';
+const dbName = 'testlive';
 
 /* GET home page. */
 router.post('/', function(req, res, next) {

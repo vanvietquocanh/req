@@ -4,7 +4,7 @@ var cdn = require("./module/CDN.js")
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 const url = require("./module/urlMongo.js");
-const dbName = 'requestSSH';
+const dbName = 'testlive';
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
