@@ -3,7 +3,7 @@ var router = express.Router();
 var axios = require('axios');
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
-const url = 'mongodb://localhost:27017';
+const url = require("./module/urlMongo.js");
 const dbName = 'requestSSH';
 var changeName = require("./module/changeName.js")
 

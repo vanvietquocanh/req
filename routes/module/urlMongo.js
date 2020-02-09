@@ -1,0 +1,1 @@
+module.exports = `mongodb://root:Anhbondeptrai123@ds063177.mlab.com:63177/testlive`

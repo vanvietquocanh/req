@@ -4,7 +4,7 @@ var cdn = require("./module/CDN.js")
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 var ObjectID = require('mongodb').ObjectID
-const url = 'mongodb://localhost:27017';
+const url = require("./module/urlMongo.js");
 const dbName = 'requestSSH';
 
 /* GET home page. */

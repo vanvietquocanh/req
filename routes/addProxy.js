@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 var cdn = require("./module/CDN.js")
 const MongoClient = require('mongodb').MongoClient;
+const url = require("./module/urlMongo.js");
 const assert = require('assert');
-const url = 'mongodb://localhost:27017';
 const dbName = 'requestSSH';
 var x = 0;
 /* GET home page. */
