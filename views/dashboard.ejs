@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Dashboard site</title>
+	<%-cdn.bootstrapCSS%>
+    <%-cdn.jquery%>
+    <%-cdn.popper%>
+    <%-cdn.bootstrapJS%>
+    <%-cdn.roboto%>
+    <%-cdn.fontawesome%>
+	<link rel="stylesheet" href="./stylesheets/styledashboard.css">
+	<script src="./javascripts/scriptdashboard.js"></script>
+</head>
+<body>
+	<div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Admin site</h3>
+            </div>
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="/dashboard"><i class="fas fa-chart-pie pr-2"></i>Bảng điều khiển</a>
+                </li>
+            </ul>
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="/proxy-list"><i class="fas fa-folder-plus"></i> Proxy List</a>
+                </li>
+            </ul>
+            <!-- <ul class="list-unstyled components">
+                <li>
+                    <a href="/video?"><i class="fas fa-video pr-2"></i>Đăng video</a>
+                </li>
+            </ul> -->
+        </nav>
+        <!-- Page Content Holder -->
+        <div id="content">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+
+                    <div class="navbar-header d-flex">
+                        <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                            <i class="glyphicon glyphicon-align-left"></i>
+                            <span><i class="fas fa-arrow-left"></i></span>
+                        </button>
+                        <h4 class="pl-4 pt-2" id="title-current"></h4>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#">Page</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>  
+        </div>
+    </div>
+</body>
+</html>

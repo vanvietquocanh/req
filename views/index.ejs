@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<title>Test</title>
+	<link rel="stylesheet" href="">
+    <%-cdn.bootstrapCSS%>
+    <%-cdn.jquery%>
+    <%-cdn.popper%>
+    <%-cdn.bootstrapJS%>
+    <%-cdn.roboto%>
+    <%-cdn.fontawesome%>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <script src="./javascripts/postLink.js"></script>
+</head>
+<body class="container">
+	<div class="mt-5 row">
+	  	<div class="form-group col-8">
+		    <input type="text" class="form-control" id="link" name="link" placeholder="Enter link">
+	  	</div>
+	  	<div class="form-group col-2">
+	    	<select name="os" id="os" class="custom-select">
+	    		<option value="adroid6">Adroid 6</option>
+	    		<option value="adroid7">Adroid 7</option>
+	    		<option value="adroid8">Adroid 8</option>
+	    		<option value="adroid9">Adroid 9</option>
+	    		<option value="adroid10">Adroid 10</option>
+	    		<option value="ios10">IOS 10</option>
+	    		<option value="ios11">IOS 11</option>
+	    		<option value="ios12">IOS 12</option>
+	    		<option value="ios13">IOS 13</option>
+	    		<option value="pc">PC</option>
+	    	</select>
+	  	</div>
+	  	<div class="form-group col-2">
+    	    <select class="custom-select" name="country" id="country">
+                <%if (geo.length>0) {%>
+                    <%for (var i = 0; i < geo.length; i++) {%>
+                        <option value="<%-geo[i]%>"><%-geo[i]%></option>
+                    <%}%>
+                <%}%>
+	        </select>
+	  	</div>
+	  	<div class="form-group col-12 d-none">
+	  		<textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+	  	</div>
+  		<div class="form-group col-12">
+  			<button type="submit" id="submit" class="btn btn-primary col-sm">Submit</button>
+  		</div>
+	</div>
+	<div class="container">
+		<table class="table">
+		  <thead>
+		    <tr>
+		      <th scope="col">Last Link</th>
+		      <th scope="col">OS</th>
+		      <th scope="col">Country</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr>
+		      <td id="lastLink"></td>
+		      <td id="osLink"></td>
+		      <td id="countryLink"></td>
+		    </tr>
+		  </tbody>
+		</table>
+	</div>
+</body>
+</html>
