@@ -42,7 +42,7 @@ router.post('/', function(req, res, next) {
 				res.send(dataLead)
 			}else{
 				dataLead.res = err.response.data.error
-				console.log(dataLead,"err2")
+				console.log(dataLead,"err2",err.response)
 				res.send(dataLead)
 			}
 		})
