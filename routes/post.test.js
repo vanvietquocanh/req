@@ -30,9 +30,11 @@ router.post('/', function(req, res, next) {
 		    port: Number(proxies.port)
 		  }
 		}).then(function (response) {
+			console.log(response)
 			dataLead.res = response.request._redirectable._currentUrl
 			res.send(dataLead)
 		}).catch(function(err) {
+			console.log(err)
 			if(err.request._currentUrl){
 				dataLead.res = err.request._currentUrl
 				res.send(dataLead)
