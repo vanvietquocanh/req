@@ -6,6 +6,7 @@ const assert = require('assert');
 const url = require("./module/urlMongo.js");
 const dbName = 'testlive';
 var changeName = require("./module/changeName.js")
+const uuidv1 = require('uuid/v4');
 
 /* GET home page. */
 router.post('/', function(req, res, next) {
@@ -14,9 +15,11 @@ router.post('/', function(req, res, next) {
 			OS 		: req.body.os,
 			Country : req.body.country
 		}
+		var urlR = req.body.link+`${uuidv1()}`;
+		console.log(changeName.userAgent[changeName.OS.indexOf(req.body.os)])
 		axios({
 		  method: 'get',
-		  url: req.body.link,
+		  url: urlR,
 		  timeout: 600000,
 		  headers:{
 		  	"User-Agent" : changeName.userAgent[changeName.OS.indexOf(req.body.os)]
@@ -24,8 +27,8 @@ router.post('/', function(req, res, next) {
 		  maxRedirects: 1000,
 		  proxy: {
 		    host: proxies.ip,
-		    port: proxies.port
-		  },
+		    port: Number(proxies.port)
+		  }
 		}).then(function (response) {
 			dataLead.res = response.request._redirectable._currentUrl
 			res.send(dataLead)
@@ -46,28 +49,26 @@ router.post('/', function(req, res, next) {
 	  	assert.equal(null, err);
 	  	var db = client.db(dbName);
 	  	db.collection("proxylist").find({"geo":req.body.country}).sort({"index":1}).toArray((err, proxies)=>{
-	  		// client.close();
 	  		if(!err){
-	  			if(proxies.length>1){
-	  				db.collection("orderGeo").findOne({"geo":req.body.country},(err, order)=>{
-	  					if(!err){
-  							db.collection("orderGeo").updateOne(
-  								{"geo":req.body.country},
-  								{"$set":{
-  									"count":order.count+1
-  									}
-  								},
-  								(err, update)=>{
-  								request(proxies[order.count%proxies.length])
-  							})
-	  					}else{
-	  						res.send("error")
-	  					}
-	  				})
-	  			}else{
-  					request(proxies)
-	  			}
+  				db.collection("orderGeo").findOne({"geo":req.body.country},(err, order)=>{
+  					if(!err){
+							db.collection("orderGeo").updateOne(
+								{"geo":req.body.country},
+								{"$set":{
+									"count":order.count+1
+									}
+								},
+								(err, update)=>{
+	  							client.close();									
+								request(proxies[order.count%proxies.length])
+							})
+  					}else{
+	  					client.close();
+  						res.send("error")
+  					}
+  				})
 	  		}else{
+	  			client.close();
 	  			res.send("error")
 	  		}
 	  	})
@@ -77,5 +78,5 @@ router.post('/', function(req, res, next) {
 
 module.exports = router;
 
-//
 //Mozilla/5.0 (iPod; CPU iPhone OS 12_0 like macOS) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/12.0 Mobile/14A5335d Safari/602.1.50
+//
