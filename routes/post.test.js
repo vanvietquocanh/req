@@ -32,14 +32,17 @@ router.post('/', function(req, res, next) {
 		}).then(function (response) {
 			console.log(response)
 			dataLead.res = response.request._redirectable._currentUrl
+			console.log(dataLead)
 			res.send(dataLead)
 		}).catch(function(err) {
 			console.log(err)
 			if(err.request._currentUrl){
 				dataLead.res = err.request._currentUrl
+				console.log(dataLead)
 				res.send(dataLead)
 			}else{
 				dataLead.res = err.response.data.error
+				console.log(dataLead)
 				res.send(dataLead)
 			}
 		})
