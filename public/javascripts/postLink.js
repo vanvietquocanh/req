@@ -13,6 +13,7 @@ jQuery(document).ready(function($) {
 					country : $("#country").val()
 				}
 				$.post('/test', data, function(data, textStatus, xhr) {
+					console.log(data);
 					$("#lastLink").text(data.res)
 					$("#countryLink").text(data.Country)
 					$("#osLink").text(data.OS)
